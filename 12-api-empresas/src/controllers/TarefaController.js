@@ -2,8 +2,8 @@ const Tarefa = require('../models/Tarefa')
 
 async function create(req, res) {
     const tarefa = new Tarefa(req.body)
-    const tarefaCriado = await tarefa.save()
-    res.status(201).json(tarefaCriado)
+    const tarefaCriada = await tarefa.save()
+    res.status(201).json(tarefaCriada)
 }
 
 async function getAll(req, res) {
@@ -15,32 +15,30 @@ async function getById(req, res) {
     if (tarefa) {
         res.json(tarefa)
     } else {
-        res.status(404).json({ mensagem: "Tarefa não encontrato!" })
+        res.status(404).json({ mensagem: "Tarefa não encontrada!" })
     }
 }
 
 async function update(req, res) {
-    const tarefaAtulizado = await Tarefa.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    if (tarefaAtulizado) {
-        res.json(tarefaAtulizado)
+    const tarefaAtualizada = await Tarefa.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    if (tarefaAtualizada) {
+        res.json(tarefaAtualizada)
     } else {
-        res.status(404).json({ mensagem: "Tarefa não encontrato!" })
+        res.status(404).json({ mensagem: "Tarefa não encontrada!" })
     }
-
 }
 
 async function remove(req, res) {
-    const tarefaExcluido = await Tarefa.findByIdAndDelete(req.params.id)
-    if (tarefaExcluido) {
+    const tarefaExcluida = await Tarefa.findByIdAndDelete(req.params.id)
+    if (tarefaExcluida) {
         res.json({
-            mensagem: "Tarefa excluido com sucesso!",
-            tarefaExcluido
+            mensagem: "Tarefa excluida com sucesso!",
+            tarefaExcluida
         })
     } else {
-        res.status(404).json({ mensagem: "Tarefa não encontrato!" })
+        res.status(404).json({ mensagem: "Tarefa não encontrada!" })
     }
 }
-
 
 module.exports = {
     create,
